@@ -1,7 +1,15 @@
 [package]
-name = "noiz"
+name = "noez"
 version = "0.1.0"
 edition = "2024"
+authors = ["Roman Chumak <p4ymak@yandex.ru>"]
+description = "Simple CLI utility to play pink noise in stereo.."
+license = "MIT"
+repository = "https://github.com/p4ymak/noez"
+readme = "README.md"
+categories = ["multimedia::audio"]
+keywords = ["pink", "noise", "stereo"]
+resolver = "2"
 
 [dependencies]
 rodio = { version = "0.21.1", default-features = false, features = ["noise", "playback"] }
