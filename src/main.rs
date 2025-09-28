@@ -1,6 +1,6 @@
 mod stereo;
 
-use rodio::{SampleRate, Sink, source::Pink};
+use rodio::{SampleRate, Sink, source::noise::Pink};
 use std::{thread, time::Duration};
 use stereo::Stereo;
 
@@ -12,8 +12,12 @@ fn main() {
         let audio =
             rodio::OutputStreamBuilder::open_default_stream().expect("open default audio stream");
         let sink = Sink::connect_new(audio.mixer());
-        let stereo = Stereo::new(Pink::new(RATE), Pink::new(RATE), STEREO_SPREAD);
+
+        let left = Pink::new(RATE);
+        let right = Pink::new(RATE);
+        let stereo = Stereo::new(left, right, STEREO_SPREAD);
         sink.append(stereo);
+
         thread::sleep(Duration::MAX);
     });
 
